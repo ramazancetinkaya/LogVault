@@ -8,6 +8,21 @@ Logger is a PHP and PSR-compatible logging library that provides secure and powe
   * Secure logging functionality that helps to prevent common security issues such as injection attacks or sensitive data leakage.
   * Easy integration with existing PSR-compatible applications and frameworks.
 
+## Usage
+```php
+$logger = new Logger('info');
+$logger->addHandler(function ($logData) {
+    $formatted = sprintf("[%s] %s: %s", date('Y-m-d H:i:s', $logData['timestamp']), strtoupper($logData['level']), $logData['message']);
+    if (!empty($logData['context'])) {
+        $formatted .= ' ' . json_encode($logData['context']);
+    }
+    file_put_contents('/var/log/myapp.log', $formatted . PHP_EOL, FILE_APPEND);
+});
+
+$logger->log('info', 'User logged in', ['user_id' => 123]);
+$logger->log('error', 'Database connection failed', ['exception' => $e]);
+```
+
 ## Authors
 
 **Ramazan Çetinkaya**
