@@ -1,6 +1,6 @@
-# PSR-3 Logger
+# Logger
 
-Here's an example of a logger class using PHP and PSR-3.
+A PSR-3 compliant logger that supports advanced features such as log levels, context, and custom handlers.
 
 ### Authors
 
